@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WSMS</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="navbar">
+        <span class="logo">WSMS</span>
+        <a asp-controller="Home" asp-action="Index">Chats</a>
+        <a asp-controller="Home" asp-action="Find">Users</a>
+        <a asp-controller="Home" asp-action="Private">Private Chats</a>
+    </div>
+    <div class="main">
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            @await Component.InvokeAsync("Room")
+        }
+        <div class="chat">
+            @RenderBody()
+        </div>
+
+        <div class="modal" id="create-room-module">
+            <form asp-controller="Home" asp-action="CreateRoom" class="modal-body">
+                <button type="button" class="close" onclick="closeModule()">X</button>
+                <header>Create Room</header>
+                <div>
+                    <input type="text" name="name" />
+                </div>
+                <footer>
+                    <button>Create</button>
+                </footer>
+            </form>
+        </div>
+
+    </div>
+    <script src="~/lib/signalr/signalr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
