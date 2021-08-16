@@ -1,0 +1,23 @@
+{
+  "name": "WSMS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reggiechapple/WSMS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reggiechapple/WSMS/issues"
+  },
+  "homepage": "https://github.com/reggiechapple/WSMS#readme",
+  "dependencies": {
+    "sqlite3": "^5.0.2"
+  }
+}
