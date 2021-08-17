@@ -22,10 +22,17 @@ namespace WSMS.Data
         public DbSet<Message> Messages { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Chapter> Chapters { get; set; }
+        public DbSet<Verse> Verses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<Book>()
+                .HasIndex(b => b.Title)
+                .IsUnique();
 
             builder.Entity<ApplicationUserRole>(userRole =>
             {
@@ -73,6 +80,7 @@ namespace WSMS.Data
             });
 
             builder.SeedAdmin();
+            builder.SeedBooks();
         }
 
         public override int SaveChanges()

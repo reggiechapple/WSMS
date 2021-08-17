@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WSMS.Data;
+using WSMS.Data.DataServices;
 using WSMS.Data.Entities;
 using WSMS.Models;
 
@@ -19,13 +20,16 @@ namespace WSMS.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
+
+        private readonly IBibleSeeder _seeder;
         
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IBibleSeeder seeder)
         {
             _logger = logger;
             _context = context;
+            _seeder = seeder;
         }
 
         [HttpGet("~/")]
@@ -38,6 +42,14 @@ namespace WSMS.Controllers
                 .ToList();
 
             return View(chats);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("/[action]")]
+        public IActionResult Seed()
+        {
+            _seeder.SeedBook("Exodus", 40);
+            return View();
         }
 
         [HttpGet("/[action]")]

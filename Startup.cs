@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WSMS.Data;
+using WSMS.Data.DataServices;
 using WSMS.Data.Identity;
 using WSMS.Hubs;
 using WSMS.Services;
@@ -57,6 +58,7 @@ namespace WSMS
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IBibleSeeder, BibleSeeder>();
             //services.AddTransient<INotificationRepository, NotificationRepository>();
             services.AddSession();
             services.AddControllersWithViews().AddNewtonsoftJson(opt => 
