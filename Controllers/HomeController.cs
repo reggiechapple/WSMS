@@ -48,7 +48,7 @@ namespace WSMS.Controllers
         [HttpGet("/[action]")]
         public IActionResult Seed()
         {
-            _seeder.SeedBook("Exodus", 40);
+            //_seeder.SeedBook("Exodus", 40);
             return View();
         }
 
